@@ -3,5 +3,12 @@
 @import "typography";
 
 body {
-  background: $c-gray;
+  margin: 0;
+  padding: 0;
+}
+
+.charts {
+  margin: 100px auto;
+  width: 600px;
+  height: 400px;
 }
