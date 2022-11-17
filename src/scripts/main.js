@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 'use strict';
 
 require('regenerator-runtime/runtime');
@@ -9,23 +8,25 @@ const myChart = echarts.init(document.querySelector('.charts'));
 
 const BASE_URL = 'https://www.ag-grid.com/example-assets/olympic-winners.json';
 
+// eslint-disable-next-line no-undef
 const fetchData = fetch(BASE_URL)
   .then((data) => data.json());
 
 const showChart = async() => {
   const dataFromApi = await fetchData;
-  const names = dataFromApi.map(item => item.athlete);
-  const filtered = dataFromApi
-    .filter(({ athlete }, index) => !names.includes(athlete, index + 1))
+
+  const filteredData = dataFromApi
+    .filter((value, index, array) =>
+      array.findIndex(el => el.athlete === value.athlete) === index)
     .slice(0, 15);
 
   const getValue = (num, value) => {
-    return filtered[num][value];
+    return filteredData[num][value];
   };
 
   const source = [];
 
-  for (let i = 0; i < filtered.length; i++) {
+  for (let i = 0; i < filteredData.length; i++) {
     source.push({
       name: getValue(i, 'athlete'),
       gold: getValue(i, 'gold'),
@@ -67,6 +68,9 @@ const showChart = async() => {
     },
     yAxis: {},
     series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }],
+    grid: {
+      right: '15%',
+    },
   };
 
   myChart.setOption(option);
