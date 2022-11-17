@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
 'use strict';
 
-import 'regenerator-runtime/runtime'
-import * as echarts from 'echarts'
+require('regenerator-runtime/runtime');
+
+const echarts = require('echarts');
 
 const myChart = echarts.init(document.querySelector('.charts'));
 
@@ -18,8 +20,8 @@ const showChart = async() => {
     .slice(0, 15);
 
   const getValue = (num, value) => {
-    return filtered[num][value]
-  }
+    return filtered[num][value];
+  };
 
   const source = [];
 
@@ -36,19 +38,19 @@ const showChart = async() => {
   const option = {
     color: ['#D4AF37', '#AAA9AD', '#CD7F32'],
     title: {
-      text: 'Medals chart'
+      text: 'Medals chart',
     },
     tooltip: {
       trigger: 'item',
       formatter:
       function() {
-        const {name, age} = arguments[0].data;
+        const { name, age } = arguments[0].data;
 
-        return `${name} ` +
-         `${age}y.o.: ` +
-         `${arguments[0].data[arguments[0]["seriesName"]]} medals`
-    }
-  },
+        return `${name} `
+        + `${age}y.o.: `
+        + `${arguments[0].data[arguments[0]['seriesName']]} medals`;
+      },
+    },
     legend: {
       orient: 'vertical',
       left: 'right',

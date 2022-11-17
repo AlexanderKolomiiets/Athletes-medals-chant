@@ -1,2 +1,2 @@
 # Charts test task
-[DEMO LINK](https://<your_account>.github.io/<repo_name>/)
+[DEMO LINK](https://alexanderkolomiiets.github.io/ThingsBoard_test_task/)
